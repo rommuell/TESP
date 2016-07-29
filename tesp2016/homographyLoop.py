@@ -12,8 +12,8 @@ import numpy as np
 option = 0 #choose 0 for static, 1 for webcam
 
 #load images
-imgOL_path = "./pikachu.jpg"
-imgBG_path = "./original.png"
+imgOL_path = "./src/pikachu.jpg"
+imgBG_path = "./src/original.png"
 imgOL= cv2.imread(imgOL_path,0)
 imgBG = cv2.imread(imgBG_path,0)
 
@@ -34,8 +34,8 @@ if option == 1:
         print("Opened camera stream!")
         ret, frame = cap.read()
         if ret == True:
-            width = cap.get(3)
-            height = cap.get(4)
+            wframe = cap.get(3)
+            hframe = cap.get(4)
             print("Frame width x height: {} x {} ".format( width, height ))
     else:
         ret = False
@@ -43,10 +43,12 @@ if option == 1:
     if ret: 
         cv2.imshow("webcam", frame)
 else:
-    frame = cv2.imread("./photo.png",0)
+    frame = cv2.imread("./src/photo.png",0)
+    wframe = 640
+    hframe = 480
     
 imgProj = imgBG
-hframe, wframe = frame.shape[:2]
+#hframe, wframe = frame.shape[:2]
 hOL, wOL = imgOL.shape[:2]
 UVcenter = np.array([[320], [240], [1]])
 
